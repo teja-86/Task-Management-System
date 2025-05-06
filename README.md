@@ -30,14 +30,17 @@ A full-stack task management platform for small teams to create, assign, and man
    npm install
    npm run dev
 4. Create .env for both:
-   ```bash
+
    For server
+   ```bash
    PORT=
    MONGO_URI=
    JWT_SECRET=
    NODE_ENV=
    CORS_ORIGIN=
+   ```
    For client
+   ```bash
    NEXT_PUBLIC_API_URL=
    PORT=
 
