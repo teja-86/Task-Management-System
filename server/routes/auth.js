@@ -31,7 +31,7 @@ router.post('/login', async (req, res) => {
     if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '5d' });
     
-    res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'strict', maxAge: 5 * 24 * 60 * 60 * 1000 }); // 5 days
+    res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'none', maxAge: 5 * 24 * 60 * 60 * 1000 }); // 5 days
     res.status(200).json({ message: 'Login successful', token });
   } catch (err) {
     res.status(500).json({ message: 'Login failed', error: err.message });
@@ -39,7 +39,7 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/logout', (req, res) => {
-  res.clearCookie('token', { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'strict' });
+  res.clearCookie('token', { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'none' });
   res.status(200).json({ message: 'Logout successful' });
 });
 
